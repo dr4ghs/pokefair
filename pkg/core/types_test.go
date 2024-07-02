@@ -1,4 +1,4 @@
-package types
+package core
 
 import (
 	"testing"
@@ -27,7 +27,7 @@ func validateType_guardClausesCheck(t *testing.T) {
 		t.Error("Type NORMAL is valid, should work")
 	}
 
-	if _, err := ValidateType(NONE, 1); err == nil {
+	if _, err := ValidateType(TYPES_NONE, 1); err == nil {
 		t.Error("NONE type is not valid, should fail")
 	}
 
@@ -110,7 +110,7 @@ func getTypeMultiplier_GuardClauses(t *testing.T) {
 		t.Error("Attacker type FIRE/WATER is combined, should not work")
 	}
 
-	if _, err := GetTypeMultiplier(NONE, FIRE); err == nil {
+	if _, err := GetTypeMultiplier(TYPES_NONE, FIRE); err == nil {
 		t.Error("Invalid attacker type NONE, should not work")
 	}
 
@@ -127,7 +127,7 @@ func getTypeMultiplier_GuardClauses(t *testing.T) {
     t.Error("Defender type FIRE/NORMAL is combined by 2, should work")
   }
 
-  if _, err := GetTypeMultiplier(FIRE, NONE); err == nil {
+  if _, err := GetTypeMultiplier(FIRE, TYPES_NONE); err == nil {
     t.Error("Invalid defender type NONE, should not work")
   }
 

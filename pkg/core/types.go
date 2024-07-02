@@ -1,4 +1,4 @@
-package types
+package core
 
 import "fmt"
 
@@ -8,25 +8,25 @@ import "fmt"
 type PokemonType uint32
 
 const (
-	NONE     PokemonType = 0
-	NORMAL               = 1
-	FIRE                 = 1 << 1
-	WATER                = 1 << 2
-	GRASS                = 1 << 3
-	ELECTRIC             = 1 << 4
-	ICE                  = 1 << 5
-	FIGHTING             = 1 << 6
-	POISON               = 1 << 7
-	GROUND               = 1 << 8
-	FLYING               = 1 << 9
-	PSYCHIC              = 1 << 10
-	BUG                  = 1 << 11
-	ROCK                 = 1 << 12
-	GHOST                = 1 << 13
-	DRAGON               = 1 << 14
-	DARK                 = 1 << 15
-	STEEL                = 1 << 16
-	FAIRY                = 1 << 17
+	TYPES_NONE  PokemonType = 0
+	NORMAL      PokemonType = 1
+	FIRE        PokemonType = 1 << 1
+	WATER       PokemonType = 1 << 2
+	GRASS       PokemonType = 1 << 3
+	ELECTRIC    PokemonType = 1 << 4
+	ICE         PokemonType = 1 << 5
+	FIGHTING    PokemonType = 1 << 6
+	POISON      PokemonType = 1 << 7
+	GROUND      PokemonType = 1 << 8
+	FLYING      PokemonType = 1 << 9
+	PSYCHIC     PokemonType = 1 << 10
+	BUG         PokemonType = 1 << 11
+	ROCK        PokemonType = 1 << 12
+	GHOST       PokemonType = 1 << 13
+	DRAGON      PokemonType = 1 << 14
+	DARK        PokemonType = 1 << 15
+	STEEL       PokemonType = 1 << 16
+	FAIRY       PokemonType = 1 << 17
 )
 
 // toUInt8 converts a PokemonType value to a unsigned 8 bit integer.
@@ -271,12 +271,12 @@ func ValidateType(
 ) (PokemonType, error) {
 	// Checking the the expected value is either 1 or 2.
 	if expected < 1 || expected > 2 {
-		return NONE, fmt.Errorf("Wrong typre quantity expected: %d", expected)
+		return TYPES_NONE, fmt.Errorf("Wrong typre quantity expected: %d", expected)
 	}
 
 	// Checking if the passed type values is in between 1 and 18.
 	if toUInt8(typ) < 1 || toUInt8(typ) > 18 {
-		return NONE, fmt.Errorf("Unknown type: value %d", typ)
+		return TYPES_NONE, fmt.Errorf("Unknown type: value %d", typ)
 	}
 
 	// Type validation is achieved by checking the first less significant bit of
@@ -296,7 +296,7 @@ func ValidateType(
 	// If the counted types are more than the expected, returns from the function
 	// with an error.
 	if count > expected {
-		return NONE, fmt.Errorf("Too many types: got %d, expected %d", count, expected)
+		return TYPES_NONE, fmt.Errorf("Too many types: got %d, expected %d", count, expected)
 	}
 
 	return typ, nil
